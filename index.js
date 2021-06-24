@@ -24,7 +24,7 @@ const post = async () => {
                 }).catch((error) => {
                     message("error", "Không thành công: " + item)
                 })
-                let time = 10
+                let time = 60
                 let cowndown = setInterval(() => {
                     time--
                     document.querySelector(".notification span").textContent = time + "s"
@@ -33,7 +33,7 @@ const post = async () => {
                         document.querySelector(".notification span").textContent = "Ok"
                     }
                 }, 1000);
-                await sleep(10000)
+                await sleep(60000)
             }
         }
     } catch (error) {
