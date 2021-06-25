@@ -5,19 +5,38 @@ function sleep(ms) {
 const post = async () => {
     try {
         let tokens = document.querySelector("#token").value.split("|")
-        let post_list = document.querySelector("#post_list").value.split("|")
+        let group_list = document.querySelector("#group_list").value
         let contents = document.querySelector("#content").value.split("|")
         let image = document.querySelector("#image").value
 
         let notifi = document.querySelector(".notification")
         notifi.style.display = "block"
 
+        let posts = await axios.get("https://graph.facebook.com/" + group_list + "/feed", {
+            params: {
+                access_token: document.querySelector("#token").value,
+                limit: 3
+            }
+        }).then((res) => {
+            message("success", "Lấy ID 5 bài viết đầu thành công")
+            return res.data.data
+        }).catch((error) => {
+            message("error", "Lấy ID bài viết thất bại")
+        })
+
+        let post_list = []
+        for (let item of posts) {
+            post_list.push(item.id.split("_")[1])
+        }
+
+        await sleep(1000)
+
         for (let token of tokens) {
             for (let item of post_list) {
                 message("start", "Bắt đầu comment: " + item)
 
                 content = contents[Math.floor(Math.random() * contents.length)]
-                
+
                 axios.post("https://graph.facebook.com/" + item + "/comments", {
                     access_token: token,
                     message: content,
@@ -55,5 +74,18 @@ const message = (type, text) => {
     div.appendChild(p);
 }
 
-//861527454458605
-// EAAAAZAw4FxQIBANPMUs4uRCp2DvkpZB8Bw76Gw1ePjCPiwJnpyDJ3Y4uviLRR29RBmh0NlGbKe5R6tTPcRidfZAweJjnRWCzuP2a6mFfkeLyZADMWMQD3Y6zCHUWYQIEVy26otxDivuTrIuCGdz3nCQgtAFGjR2dIhKw24Ex2nfd2y6t0qPZBJV0lA0WAg2gZD
+const getFeed = () => {
+    axios.get("https://graph.facebook.com/" + 861527454458605 + "/feed", {
+        params: {
+            access_token: document.querySelector("#token").value,
+            limit: 5
+        }
+    }).then((res) => {
+        return res.data.data
+        // for (let item of res.data.data) {
+        //     posts.push(item.id.split("_")[1])
+        // }
+    }).catch((error) => {
+        message("error", "Lấy ID bài viết thất bại")
+    })
+}

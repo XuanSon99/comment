@@ -56,7 +56,7 @@ main {
 .mowtainer input[type="button"] {
     background: linear-gradient(to right, rgba(45, 193, 201, 1) 0%, rgba(57, 100, 208, 1) 80%);
     cursor: pointer;
-    width: 50%;
+    width: 30%;
     margin: 0 auto;
     color: #fff;
     box-shadow: rgb(51 169 255) 3px 3px, rgb(51 169 255 / 42%) 6px 6px, rgb(51 169 255 / 30%) 9px 9px, rgb(51 169 255 / 31%) 11px 11px, rgb(51 169 255 / 0%) 14px 14px;
