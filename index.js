@@ -6,7 +6,7 @@ const post = async () => {
     try {
         let tokens = document.querySelector("#token").value.split("|")
         let post_list = document.querySelector("#post_list").value.split("|")
-        let content = document.querySelector("#content").value
+        let contents = document.querySelector("#content").value.split("|")
         let image = document.querySelector("#image").value
 
         let notifi = document.querySelector(".notification")
@@ -15,6 +15,9 @@ const post = async () => {
         for (let token of tokens) {
             for (let item of post_list) {
                 message("start", "Bắt đầu comment: " + item)
+
+                content = contents[Math.floor(Math.random() * contents.length)]
+                
                 axios.post("https://graph.facebook.com/" + item + "/comments", {
                     access_token: token,
                     message: content,
