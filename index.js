@@ -8,6 +8,7 @@ const post = async () => {
         let group_list = document.querySelector("#group_list").value
         let contents = document.querySelector("#content").value.split("|")
         let image = document.querySelector("#image").value
+        let time = document.querySelector("#time").value
 
         let notifi = document.querySelector(".notification")
         notifi.style.display = "block"
@@ -46,7 +47,7 @@ const post = async () => {
                 }).catch((error) => {
                     message("error", "Không thành công: " + item)
                 })
-                let time = 60
+                let time = time
                 let cowndown = setInterval(() => {
                     time--
                     document.querySelector(".notification span").textContent = time + "s"
@@ -55,7 +56,7 @@ const post = async () => {
                         document.querySelector(".notification span").textContent = "Ok"
                     }
                 }, 1000);
-                await sleep(60000)
+                await sleep(time*1000)
             }
         }
     } catch (error) {
