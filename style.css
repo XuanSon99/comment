@@ -204,8 +204,8 @@ main {
 }
 
 .notification p.error {
-    background: #ff7230;
-    box-shadow: 0 0 5px #ff7230
+    background: #ff3030;
+    box-shadow: 0 0 5px #ff3030
 }
 
 .notification span {

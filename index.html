@@ -19,11 +19,11 @@
 <body>
     <main>
         <div class="mowtainer">
-            <input type="text" placeholder="Token" id="token">
-            <input type="text" placeholder="ID group" id="group_list">
-            <input type="text" placeholder="Nội dung" id="content"></input>
+            <!-- <input type="text" placeholder="Token" id="token"> -->
+            <input type="text" placeholder="ID group muốn comment" id="group_list">
+            <input type="text" placeholder="Nội dung (Mỗi nội dung cách nhau dấu |)" id="content"></input>
             <input type="text" placeholder="Link Ảnh" id="image"></input>
-            <input type="input" placeholder="Thời gian bình luận (s)" id="time"></input>
+            <input type="number" placeholder="Thời gian bình luận (s)" id="time"></input>
             <input type="button" onclick="post()" value="Bình luận">
         </div>
         <div class="setting">
@@ -32,6 +32,7 @@
                 <a href="https://m.facebook.com/composer/ocelot/async_loader/?publisher=feed" target="_blank">
                     Get Token
                 </a>
+                <a href="https://docs.google.com/spreadsheets/d/1AKkKbR1FcKIfoO0EGqETJkXVTEq_by02GPZcpVTXDlA/edit#gid=0" target="_blank">Tokens</a>
             </div>
         </div>
         <div class="notification"><span></span></div>
