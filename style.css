@@ -29,7 +29,7 @@ main {
     flex-wrap: wrap;
 }
 
-.mowtainer input {
+.mowtainer input, select {
     border-radius: 50px;
     display: block;
     height: 50px;

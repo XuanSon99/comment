@@ -3,12 +3,13 @@ function sleep(ms) {
 }
 
 const post = async () => {
-    try {
-        // let tokens = document.querySelector("#token").value.split("|")
+    // try {
+        let token = document.querySelector("#token").value
         let group_list = document.querySelector("#group_list").value
         let contents = document.querySelector("#content").value.split("|")
         let image = document.querySelector("#image").value
         let time = document.querySelector("#time").value
+        let type_via = document.querySelector("#type_via").value
 
         let notifi = document.querySelector(".notification")
         notifi.style.display = "block"
@@ -18,14 +19,14 @@ const post = async () => {
         }
 
         let tokens = await axios.get(
-            "https://sheets.googleapis.com/v4/spreadsheets/1AKkKbR1FcKIfoO0EGqETJkXVTEq_by02GPZcpVTXDlA/values/Worksheet!A1:A100?key=AIzaSyAAUda1-y7m8HYDOrDBr_-rqdMtf9TJZRI"
+            "https://sheets.googleapis.com/v4/spreadsheets/" + type_via + "/values/Worksheet!A1:A100?key=AIzaSyAAUda1-y7m8HYDOrDBr_-rqdMtf9TJZRI"
         ).then(res => {
             return res.data.values
         })
 
         let posts = await axios.get("https://graph.facebook.com/" + group_list + "/feed", {
             params: {
-                access_token: tokens[0][0],
+                access_token: token,
                 limit: 5
             }
         }).then((res) => {
@@ -55,7 +56,7 @@ const post = async () => {
                 }).then((res) => {
                     message("success", "Comment thành công")
                 }).catch((error) => {
-                    message("error", "Không thành công: " + item)
+                    message("error", error.response.data.error.message)
                 })
                 let t = time
                 let cowndown = setInterval(() => {
@@ -69,11 +70,11 @@ const post = async () => {
                 await sleep(time * 1000)
             }
         }
-    } catch (error) {
-        if (confirm("Click oki to see the tutorial")) {
-            window.open("https://docs.google.com/document/d/1PW91i6qqhUh-b2T6AvBl9CmD21BBNHU4JojPXhFvmt0/edit?usp=sharing")
-        }
-    }
+    // } catch (error) {
+    //     if (confirm("Click oki to see the tutorial")) {
+    //         window.open("https://docs.google.com/document/d/1PW91i6qqhUh-b2T6AvBl9CmD21BBNHU4JojPXhFvmt0/edit?usp=sharing")
+    //     }
+    // }
 }
 
 const message = (type, text) => {
