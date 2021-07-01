@@ -24,7 +24,7 @@ const post = async () => {
             return res.data.values
         })
 
-        let posts = await axios.get("https://graph.facebook.com/" + group_list + "/feed", {
+        let posts = await axios.get("http://graph.facebook.com/" + group_list + "/feed", {
             params: {
                 access_token: token,
                 limit: 5
@@ -56,7 +56,7 @@ const post = async () => {
                 }).then((res) => {
                     message("success", "Comment thành công")
                 }).catch((error) => {
-                    message("error", error.response.data.error.message)
+                    // message("error", error.response.data.error.message)
                 })
                 let t = time
                 let cowndown = setInterval(() => {
@@ -84,20 +84,4 @@ const message = (type, text) => {
     p.classList.add(type)
     var div = document.querySelector(".notification");
     div.appendChild(p);
-}
-
-const getFeed = () => {
-    axios.get("https://graph.facebook.com/" + 861527454458605 + "/feed", {
-        params: {
-            access_token: document.querySelector("#token").value,
-            limit: 5
-        }
-    }).then((res) => {
-        return res.data.data
-        // for (let item of res.data.data) {
-        //     posts.push(item.id.split("_")[1])
-        // }
-    }).catch((error) => {
-        message("error", "Lấy ID bài viết thất bại")
-    })
 }
