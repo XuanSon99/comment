@@ -24,7 +24,7 @@ const post = async () => {
             return res.data.values
         })
 
-        let posts = await axios.get("http://graph.facebook.com/" + group_list + "/feed", {
+        let posts = await axios.get("https://graph.facebook.com/" + group_list + "/feed", {
             params: {
                 access_token: token,
                 limit: 5
